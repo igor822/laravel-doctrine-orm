@@ -21,6 +21,7 @@ use LaravelDoctrine\ORM\Console\ClearResultCacheCommand;
 use LaravelDoctrine\ORM\Console\ConvertConfigCommand;
 use LaravelDoctrine\ORM\Console\EnsureProductionSettingsCommand;
 use LaravelDoctrine\ORM\Console\GenerateProxiesCommand;
+use LaravelDoctrine\ORM\Console\Generators\GenerateFailedJobsCommand;
 use LaravelDoctrine\ORM\Console\InfoCommand;
 use LaravelDoctrine\ORM\Console\SchemaCreateCommand;
 use LaravelDoctrine\ORM\Console\SchemaDropCommand;
@@ -268,7 +269,8 @@ class DoctrineServiceProvider extends ServiceProvider
             ClearQueryCacheCommand::class,
             EnsureProductionSettingsCommand::class,
             GenerateProxiesCommand::class,
-            ConvertConfigCommand::class
+            ConvertConfigCommand::class,
+            GenerateFailedJobsCommand::class,
         ]);
     }
 

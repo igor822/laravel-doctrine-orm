@@ -7,5 +7,6 @@ composer.lock
 /tests/Stubs/storage/framework/views/*
 !/tests/Stubs/storage/framework/views/.gitkeep
 /tests/Stubs/storage/doctrine.generated.php
+/tests/Stubs/storage/generator/*
 .idea
 laravel-doctrine-orm.iml
