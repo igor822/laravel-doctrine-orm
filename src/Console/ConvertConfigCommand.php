@@ -2,14 +2,8 @@
 
 namespace LaravelDoctrine\ORM\Console;
 
-use Illuminate\Container\Container as Container;
-use Illuminate\Events\Dispatcher;
-use Illuminate\Filesystem\Filesystem as Filesystem;
-use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\Engines\CompilerEngine;
-use Illuminate\View\Engines\EngineResolver;
-use Illuminate\View\FileViewFinder;
 use InvalidArgumentException;
+use LaravelDoctrine\ORM\Utilities\TemplateFactory;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -93,7 +87,7 @@ class ConvertConfigCommand extends SymfonyCommand
 
         $sourceArrayConfig = include $sourceFilePath;
 
-        $viewFactory = $this->createViewFactory();
+        $viewFactory = TemplateFactory::createViewFactory(realpath(__DIR__ . '/ConfigMigrations/templates'));
 
         $className = __NAMESPACE__ . '\ConfigMigrations\\' . ucfirst($author) . 'Migrator';
 
@@ -107,29 +101,5 @@ class ConvertConfigCommand extends SymfonyCommand
         file_put_contents($destFilePath, '<?php ' . $convertedConfigString);
 
         $output->writeln('Conversion successful. File generated at ' . $destFilePath);
-    }
-
-    /**
-     * @return \Illuminate\View\Factory
-     */
-    protected function createViewFactory()
-    {
-        $FileViewFinder = new FileViewFinder(
-            new Filesystem,
-            [realpath(__DIR__ . '/ConfigMigrations/templates')]
-        );
-
-        $dispatcher = new Dispatcher(new Container);
-
-        $compiler       = new BladeCompiler(new Filesystem(), storage_path() . '/framework/views');
-        $bladeEngine    = new CompilerEngine($compiler);
-        $engineResolver = new EngineResolver();
-        $engineResolver->register('blade', function () use (&$bladeEngine) {
-            return $bladeEngine;
-        });
-
-        $viewFactory = new \Illuminate\View\Factory($engineResolver, $FileViewFinder, $dispatcher);
-
-        return $viewFactory;
     }
 }
