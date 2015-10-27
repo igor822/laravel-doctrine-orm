@@ -14,7 +14,7 @@
         length: 200
         column: connection
       queue:
-        type: stirng
+        type: string
         nullable: false
         length: 100
         column: queue
@@ -22,7 +22,7 @@
         type: text
         nullable: false
         column: payload
-      failed_at:
+      failedAt:
         type: timestamp
         nullable: false
         column: failed_at

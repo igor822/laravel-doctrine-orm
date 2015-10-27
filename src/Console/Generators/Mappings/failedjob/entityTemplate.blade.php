@@ -6,7 +6,7 @@ class FailedJob
     protected $connection;
     protected $queue;
     protected $payload;
-    protected $failed_at;
+    protected $failedAt;
 
     /**
      * @return mixed
@@ -45,7 +45,7 @@ class FailedJob
      */
     public function getFailedAt()
     {
-        return $this->failed_at;
+        return $this->failedAt;
     }
 
 }
