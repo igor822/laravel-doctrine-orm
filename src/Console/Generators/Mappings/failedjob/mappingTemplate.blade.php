@@ -1,4 +1,4 @@
-{{$namespace}}:
+{{$namespace}}\FailedJob:
     type: entity
     table: failed_jobs
     id:
