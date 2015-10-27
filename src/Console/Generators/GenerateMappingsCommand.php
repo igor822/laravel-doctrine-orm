@@ -146,7 +146,7 @@ abstract class GenerateMappingsCommand extends SymfonyCommand
      * @throws \Exception
      * @return string
      */
-    protected function generateMappingName($name)
+    public function generateMappingName($name)
     {
         if ($this->useSimplified) {
             return $name . $this->getMappingExtension();
@@ -169,7 +169,7 @@ abstract class GenerateMappingsCommand extends SymfonyCommand
      * @throws \Exception
      * @return null|string
      */
-    protected function getMappingExtension()
+    public function getMappingExtension()
     {
         switch ($this->driver) {
             case 'yaml':
